@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingActivity">
+
+
+    <TextView
+        android:id="@+id/txtView_Setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:text="Night Mode"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtView_textSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:text="Text Size"
+        android:textSize="20sp"
+        android:layout_below="@+id/txtView_Setting"
+        android:textStyle="bold" />
+
+    <com.google.android.material.slider.Slider
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/txtSizeSlider"
+        android:layout_below="@+id/nihtModeSwitch"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/txtView_textSize" />
+
+    <Switch
+        android:id="@+id/nihtModeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/txtView_Setting"
+        android:textOff="Off"
+        android:textOn="On"
+        android:padding="10sp" />
+</RelativeLayout>
