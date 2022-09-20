@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -43,7 +44,21 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void setTextSize() {
-        //Todo text size
+        Slider slider = findViewById(R.id.txtSizeSlider);
+        slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+            float spinnerValue = 0;
+            @Override
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+               spinnerValue =  slider.getValue();
+
+            }
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                Toast.makeText(SettingActivity.this, "Font size set to: "+spinnerValue, Toast.LENGTH_LONG).show();
+
+            }
+        });
+
     }
 
 

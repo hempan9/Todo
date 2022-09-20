@@ -28,4 +28,18 @@ public class TodoStorage {
         todoList.remove(index);
         Log.d(TAG, "deleteByIndex: removed "+ index);
     }
+    public static Todo findByIndex(int index) {
+        if (index<=todoList.size()){
+            Log.d(TAG, "findByIndex: found "+ index);
+           return todoList.get(index);
+        }
+        else {
+            throw new ArrayIndexOutOfBoundsException("No such index");
+        }
+    }
+    public void updateTodo(int index, final Todo todo){
+//        Todo todo1 = findByIndex(index);
+//        todo1.setName(todo.getName());
+//        todo1
+    }
 }

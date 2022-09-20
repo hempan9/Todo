@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/black"
-    tools:context=".AddActivity">
+    tools:context=".UpdateActivity">
 
 
     <TextView
@@ -16,7 +16,7 @@
         android:layout_marginBottom="211dp"
         android:inputType="text"
         android:minHeight="20dp"
-        android:text="Create new todo"
+        android:text="Update existing  todo"
         android:textColor="@color/purple_700"
         android:textSize="20dp"
         android:textStyle="bold|normal"
@@ -36,52 +36,34 @@
         android:minHeight="48dp"
         android:textColorHint="#FF9800"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewUpdate" />
 
     <EditText
         android:id="@+id/txt_name_update"
-        android:layout_width="375dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="373dp"
+        android:layout_height="39dp"
         android:hint="@string/type_description_here"
         android:inputType="textAutoCorrect|textShortMessage"
         android:minHeight="48dp"
         android:textColorHint="#FF9800"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_desc_update" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.269" />
 
     <Button
         android:id="@+id/btn_timePicker_update"
-        android:layout_width="115dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="292dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:text="Select time: "
         app:layout_constraintBottom_toTopOf="@+id/update_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name_update"
-        app:layout_constraintVertical_bias="0.009" />
-
-    <TextView
-        android:id="@+id/selectedTime"
-        android:layout_width="157dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="58dp"
-        android:layout_marginEnd="72dp"
-        android:padding="20sp"
-        android:text="Time: 00:00 "
-        android:textAlignment="center"
-        android:textColor="#FF9800"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/update_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.803"
-        app:layout_constraintStart_toEndOf="@+id/btn_timePicker_update"
         app:layout_constraintTop_toBottomOf="@+id/txt_name_update"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -92,7 +74,7 @@
         android:background="@color/teal_200"
         android:backgroundTint="@color/black"
         android:backgroundTintMode="add"
-        android:text="Save"
+        android:text="Update"
         android:textColor="#B200C853"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
