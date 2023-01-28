@@ -1,4 +1,4 @@
-package com.hmp.todo;
+package com.hmp.todo.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -18,20 +17,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
+import com.hmp.todo.R;
+import com.hmp.todo.adapter.TodoListAdapter;
+import com.hmp.todo.entity.TodoEntity;
 import com.hmp.todo.model.Todo;
 import com.hmp.todo.storage.TodoStorage;
+import com.hmp.todo.util.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListAdapter listAdapter;
-    private static int TODO_COUNT=0;
+    private ArrayAdapter listAdapter;
+    private static int TODO_COUNT = 0;
     private TextView textViewTodo;
 
     @SuppressLint("ResourceType")
@@ -41,26 +41,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView listView = findViewById(R.id.todo_list);
-        List<Todo> todoList = TodoStorage.getToDoList();
-        textViewTodo= findViewById(R.id.to_);
-        TODO_COUNT = todoList.size();
+        List<TodoEntity> db_todos = Util.createDb(this).todoDao().getAllTodos();
+        textViewTodo = findViewById(R.id.to_);
+        TODO_COUNT = db_todos.size();
         // show count for todos
-        textViewTodo.setText("Todo("+TODO_COUNT+")");
+        textViewTodo.setText("Todo(" + TODO_COUNT + ")");
 
-        if (todoList.isEmpty()) {
-            listAdapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, Collections.singletonList("No todo's found"));
+        if (db_todos.isEmpty()) {
+            listAdapter = new TodoListAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new ArrayList<>());
         } else {
+            ArrayList<TodoEntity> todoList = new ArrayList<>();
+
+            db_todos.stream().forEach(
+                    data -> todoList.add(data)
+            );
             listAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, todoList);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
-                intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(position));
+                intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(id));
                 startActivity(intent);
             });
+
         }
 
         listView.setAdapter(listAdapter);
         findViewById(R.id.btn_add).setOnClickListener(
                 (view) -> startActivity(new Intent(this, AddActivity.class)));
+
+
     }
 
     @Override
@@ -86,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingActivity.class));
                 return true;
             case R.id.about:
-//          todo      startActivity();
                 Toast.makeText(this, "HMP SOFT INC, 2022 (C)", Toast.LENGTH_LONG).show();
                 return true;
             default:
@@ -94,4 +101,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void loadData() {
+//    SharedPreferences sharedPreferences = getApplicationContext().deleteSharedPreferences()
+    }
 }

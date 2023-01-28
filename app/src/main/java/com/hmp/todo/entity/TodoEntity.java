@@ -1,25 +1,26 @@
-package com.hmp.todo.model;
+package com.hmp.todo.entity;
 
-import android.os.Build;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-
-import java.time.Instant;
 import java.util.Date;
 
-public class Todo {
-
+@Entity(tableName = "Todo")
+public class TodoEntity {
+    @ColumnInfo(name = "todoId")
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private String desc;
     private Date createdDate;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Todo() {
-        this.name = "Buy laptop";
-        this.desc = "Buy latop from ebay";
-        this.createdDate = Date.from(Instant.now());
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -46,15 +47,25 @@ public class Todo {
         this.createdDate = createdDate;
     }
 
-    public Todo(String name, String desc, Date createdDate) {
+
+    public TodoEntity(int id, String name, String desc, Date createdDate) {
+        this.id = id;
         this.name = name;
         this.desc = desc;
         this.createdDate = createdDate;
     }
 
-    @NonNull
+    public TodoEntity() {
+    }
+
     @Override
     public String toString() {
-        return this.name+"\n"+this.desc;
+        return "TodoEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", createdDate=" + createdDate +
+                '}';
     }
+
 }

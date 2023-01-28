@@ -1,4 +1,4 @@
-package com.hmp.todo;
+package com.hmp.todo.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.slider.Slider;
+import com.hmp.todo.R;
 
 public class SettingActivity extends AppCompatActivity {
     private Switch nightModeSwitch;
