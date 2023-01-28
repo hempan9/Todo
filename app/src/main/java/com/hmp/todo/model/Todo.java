@@ -8,6 +8,9 @@ import androidx.annotation.RequiresApi;
 import java.time.Instant;
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class Todo {
 
     private int id;

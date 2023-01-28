@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.hmp.todo.entity.TodoEntity;
 
@@ -16,6 +17,9 @@ public interface TodoDao {
 
     @Insert
     void saveTodo(TodoEntity entity);
+
+    @Update
+    void updateTodo(final TodoEntity todoEntity);
 
     @Query(value = "SELECT * FROM todo WHERE :id = todoId ")
     TodoEntity getTodoById(int id);

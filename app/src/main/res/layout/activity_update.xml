@@ -28,8 +28,8 @@
 
     <EditText
         android:id="@+id/txt_desc_update"
-        android:layout_width="369dp"
-        android:layout_height="46dp"
+        android:layout_width="343dp"
+        android:layout_height="75dp"
         android:layout_marginTop="48dp"
         android:hint="@string/enter_title_for_todo"
         android:inputType="textAutoCorrect|textShortMessage"
@@ -40,20 +40,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewUpdate" />
 
+
     <EditText
         android:id="@+id/txt_name_update"
-        android:layout_width="373dp"
-        android:layout_height="39dp"
+        android:layout_width="362dp"
+        android:layout_height="153dp"
         android:hint="@string/type_description_here"
         android:inputType="textAutoCorrect|textShortMessage"
         android:minHeight="48dp"
         android:textColorHint="#FF9800"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintVertical_bias="0.304" />
 
     <Button
         android:id="@+id/btn_timePicker_update"
@@ -65,39 +66,39 @@
         app:layout_constraintBottom_toTopOf="@+id/update_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_name_update"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.055"
+        />
 
     <Button
         android:id="@+id/update_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
         android:background="@color/teal_200"
         android:backgroundTint="@color/black"
         android:backgroundTintMode="add"
         android:text="Update"
         android:textColor="#B200C853"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name_update"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_timePicker_update" />
 
     <Button
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="256dp"
+        android:layout_marginTop="188dp"
         android:background="@color/teal_200"
         android:backgroundTint="@color/teal_700"
         android:backgroundTintMode="add"
         android:text="Delete"
         android:textColor="#D50000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_button"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_timePicker_update" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

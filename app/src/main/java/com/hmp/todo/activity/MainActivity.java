@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,12 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hmp.todo.R;
 import com.hmp.todo.adapter.TodoListAdapter;
 import com.hmp.todo.entity.TodoEntity;
-import com.hmp.todo.model.Todo;
-import com.hmp.todo.storage.TodoStorage;
 import com.hmp.todo.util.Util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter listAdapter;
     private static int TODO_COUNT = 0;
     private TextView textViewTodo;
+    private static String TAG = "MainActivity:: ";
 
     @SuppressLint("ResourceType")
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -51,24 +52,23 @@ public class MainActivity extends AppCompatActivity {
             listAdapter = new TodoListAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, new ArrayList<>());
         } else {
             ArrayList<TodoEntity> todoList = new ArrayList<>();
-
             db_todos.stream().forEach(
                     data -> todoList.add(data)
             );
-            listAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, todoList);
+            listAdapter = new TodoListAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, todoList);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
                 intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(id));
                 startActivity(intent);
             });
-
+            listView.setOnItemLongClickListener((parent, view, position, id) -> {
+                //TODO add pop up menu on long press for todo
+                return false;
+            });
         }
-
         listView.setAdapter(listAdapter);
         findViewById(R.id.btn_add).setOnClickListener(
                 (view) -> startActivity(new Intent(this, AddActivity.class)));
-
-
     }
 
     @Override

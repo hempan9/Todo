@@ -1,5 +1,6 @@
 package com.hmp.todo.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +29,9 @@ public class TodoListAdapter extends ArrayAdapter<TodoEntity> {
         super(context, resource, objects);
         this.resource = resource;
         this.context = context;
-        this.layoutInflater = LayoutInflater.from(context);
-
     }
 
-    @NonNull
+//    @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
@@ -54,10 +53,10 @@ public class TodoListAdapter extends ArrayAdapter<TodoEntity> {
         TextView textView1 = (TextView) currentItemView.findViewById(R.id.text1);
         TextView textView2 = (TextView) currentItemView.findViewById(R.id.text2);
         TextView textView3 = (TextView) currentItemView.findViewById(R.id.text3);
-        textView1.setText(name);
-        textView2.setText(desc);
+        textView1.setText(desc);
+        textView2.setText(name);
         textView3.setText(date.toString());
-
-        return convertView;
+        return currentItemView;
     }
+
 }

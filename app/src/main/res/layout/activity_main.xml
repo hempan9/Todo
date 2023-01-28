@@ -22,17 +22,16 @@
 
     <ListView
         android:id="@+id/todo_list"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/to_"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="17dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="11dp"
-        android:layout_marginEnd="50dp"
-        android:background="@color/material_dynamic_neutral95"
-        android:padding="20sp"
+        android:layout_marginEnd="40dp"
         android:text="No todos found"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_add"

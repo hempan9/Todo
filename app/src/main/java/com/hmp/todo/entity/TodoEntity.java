@@ -6,7 +6,10 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
+import lombok.Data;
+
 @Entity(tableName = "Todo")
+@Data
 public class TodoEntity {
     @ColumnInfo(name = "todoId")
     @PrimaryKey(autoGenerate = true)

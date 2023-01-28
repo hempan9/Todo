@@ -26,8 +26,8 @@ import com.hmp.todo.storage.TodoDatabase;
 import com.hmp.todo.storage.TodoStorage;
 import com.hmp.todo.util.Util;
 
-import java.sql.Date;
 import java.time.Instant;
+import java.util.Date;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class AddActivity extends AppCompatActivity {
@@ -71,7 +71,6 @@ public class AddActivity extends AppCompatActivity {
                     TodoDatabase db = Util.createDb(this);
                     db.todoDao().saveTodo(todoEntity);
                     Log.d(TAG, "validateAndSaveTodo: TODO saved to database");
-
                     Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, MainActivity.class));
                 }
@@ -82,8 +81,6 @@ public class AddActivity extends AppCompatActivity {
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
         cal.set(Calendar.MINUTE, minute);
-
-        //rest of the code
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -95,7 +92,6 @@ public class AddActivity extends AppCompatActivity {
         todoEntity = new TodoEntity();
         todoEntity.setName(todo.getName());
         todoEntity.setDesc(todo.getDesc());
-        todoEntity.setCreatedDate(todo.getCreatedDate());
-
+        todoEntity.setCreatedDate (todo.getCreatedDate());
     }
 }

@@ -56,7 +56,8 @@ dependencies {
     testImplementation 'android.arch.persistence.room:testing:1.1.1'
 
     implementation 'com.github.binodnme:date-converter:1.0'
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+//    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+    compileOnly "org.projectlombok:lombok:1.18.24"
 
 
 }
