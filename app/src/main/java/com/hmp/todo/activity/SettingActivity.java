@@ -1,7 +1,10 @@
 package com.hmp.todo.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -46,20 +49,26 @@ public class SettingActivity extends AppCompatActivity {
 
     private void setTextSize() {
         Slider slider = findViewById(R.id.txtSizeSlider);
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+
         slider.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             float spinnerValue = 0;
             @Override
             public void onStartTrackingTouch(@NonNull Slider slider) {
                spinnerValue =  slider.getValue();
 
+
             }
+
             @Override
             public void onStopTrackingTouch(@NonNull Slider slider) {
+                SharedPreferences.Editor prefEdit = prefs.edit();
+                prefEdit.putFloat("fontSize", spinnerValue);
+                prefEdit.apply();
                 Toast.makeText(SettingActivity.this, "Font size set to: "+spinnerValue, Toast.LENGTH_LONG).show();
 
             }
         });
-
     }
 
 

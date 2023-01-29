@@ -1,6 +1,5 @@
 package com.hmp.todo.activity;
 
-import static android.content.ContentValues.TAG;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,13 +22,11 @@ import com.hmp.todo.R;
 import com.hmp.todo.entity.TodoEntity;
 import com.hmp.todo.model.Todo;
 import com.hmp.todo.storage.TodoDatabase;
-import com.hmp.todo.storage.TodoStorage;
 import com.hmp.todo.util.Util;
 
 import java.time.Instant;
 import java.util.Date;
 
-@RequiresApi(api = Build.VERSION_CODES.N)
 public class AddActivity extends AppCompatActivity {
     private EditText name;
     private EditText desc;
@@ -37,23 +34,23 @@ public class AddActivity extends AppCompatActivity {
     private Button buttonSave, timePicker;
     private Todo todo;
     private TodoEntity todoEntity;
+    private static final String TAG = "AddActivity";
 
     Calendar cal = new GregorianCalendar();
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        name = findViewById(R.id.txt_name_update);
+        name = findViewById(R.id.txt_name_add);
         name.setMaxLines(1);
         name.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         timeView = findViewById(R.id.selectedTime);
 
-        desc = findViewById(R.id.txt_desc_update);
+        desc = findViewById(R.id.txt_desc_add);
         desc.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 
-        buttonSave = findViewById(R.id.update_button);
+        buttonSave = findViewById(R.id.save_button);
         timePicker = findViewById(R.id.btn_timePicker_update);
         timePicker.setOnClickListener(
                 v -> {
@@ -66,13 +63,16 @@ public class AddActivity extends AppCompatActivity {
 
         buttonSave.setOnClickListener(
                 (v) -> {
-                    validateAndSaveTodo();
-                    TodoStorage.saveTodo(todo);
-                    TodoDatabase db = Util.createDb(this);
-                    db.todoDao().saveTodo(todoEntity);
-                    Log.d(TAG, "validateAndSaveTodo: TODO saved to database");
-                    Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, MainActivity.class));
+                    if (validateAndSaveTodo()) {
+                        TodoDatabase db = Util.createDb(this);
+                        db.todoDao().saveTodo(todoEntity);
+                        Log.d(TAG, "validateAndSaveTodo: TODO saved to database");
+                        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(this, MainActivity.class));
+                    } else {
+                        Toast.makeText(this, " Todo title cannot be empty", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
         );
@@ -83,8 +83,11 @@ public class AddActivity extends AppCompatActivity {
         cal.set(Calendar.MINUTE, minute);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void validateAndSaveTodo() {
+    public boolean validateAndSaveTodo() {
+        if (name.getText().toString().isEmpty() || name.getText() == null) {
+            Toast.makeText(this, "Title cannot be null/empty", Toast.LENGTH_LONG);
+            return false;
+        }
         todo = new Todo();
         todo.setName(name.getText().toString());
         todo.setDesc(desc.getText().toString());
@@ -92,6 +95,7 @@ public class AddActivity extends AppCompatActivity {
         todoEntity = new TodoEntity();
         todoEntity.setName(todo.getName());
         todoEntity.setDesc(todo.getDesc());
-        todoEntity.setCreatedDate (todo.getCreatedDate());
+        todoEntity.setCreatedDate(todo.getCreatedDate());
+        return true;
     }
 }

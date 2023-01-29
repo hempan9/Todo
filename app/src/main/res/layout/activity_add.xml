@@ -20,28 +20,29 @@
         android:textColor="@color/purple_700"
         android:textSize="20dp"
         android:textStyle="bold|normal"
-        app:layout_constraintBottom_toTopOf="@+id/txt_desc_update"
+        app:layout_constraintBottom_toTopOf="@+id/txt_name_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.011"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txt_desc_update"
-        android:layout_width="369dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="48dp"
-        android:hint="@string/enter_title_for_todo"
-        android:inputType="textAutoCorrect|textShortMessage"
-        android:minHeight="48dp"
-        android:textColorHint="#FF9800"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUpdate" />
+        <EditText
+            android:id="@+id/txt_name_add"
+            android:layout_width="369dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="48dp"
+            android:scaleType="centerInside"
+            android:hint="@string/enter_title_for_todo"
+            android:inputType="textAutoCorrect|textShortMessage"
+            android:minHeight="48dp"
+            android:textColorHint="#FF9800"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUpdate" />
 
     <EditText
-        android:id="@+id/txt_name_update"
+        android:id="@+id/txt_desc_add"
         android:layout_width="375dp"
         android:layout_height="52dp"
         android:layout_marginTop="24dp"
@@ -52,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_desc_update" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_add" />
 
     <Button
         android:id="@+id/btn_timePicker_update"
@@ -61,9 +62,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="56dp"
         android:text="Select time: "
-        app:layout_constraintBottom_toTopOf="@+id/update_button"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name_update"
+        app:layout_constraintTop_toBottomOf="@+id/txt_desc_add"
         app:layout_constraintVertical_bias="0.009" />
 
     <TextView
@@ -78,26 +79,26 @@
         android:textColor="#FF9800"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/update_button"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.803"
         app:layout_constraintStart_toEndOf="@+id/btn_timePicker_update"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name_update"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_add"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/update_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_200"
+        android:id="@+id/save_button"
+        android:layout_width="95dp"
+        android:layout_height="85dp"
+        android:background="@drawable/update_button"
         android:backgroundTint="@color/black"
         android:backgroundTintMode="add"
-        android:text="Save"
         android:textColor="#B200C853"
+        android:gravity="center"
+        android:contentDescription="Save Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name_update"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_add"
         app:layout_constraintVertical_bias="0.707" />
 </androidx.constraintlayout.widget.ConstraintLayout>

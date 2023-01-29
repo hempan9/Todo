@@ -2,9 +2,11 @@ package com.hmp.todo.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.hmp.todo.R;
 import com.hmp.todo.adapter.TodoListAdapter;
 import com.hmp.todo.entity.TodoEntity;
@@ -33,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter listAdapter;
     private static int TODO_COUNT = 0;
     private TextView textViewTodo;
+
     private static String TAG = "MainActivity:: ";
 
     @SuppressLint("ResourceType")
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,19 +59,25 @@ public class MainActivity extends AppCompatActivity {
                     data -> todoList.add(data)
             );
             listAdapter = new TodoListAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, todoList);
+            listView.setAdapter(listAdapter);
             listView.setOnItemClickListener((parent, view, position, id) -> {
                 Intent intent = new Intent(MainActivity.this, UpdateActivity.class);
                 intent.putExtra(Intent.EXTRA_TEXT, String.valueOf(id));
                 startActivity(intent);
             });
-            listView.setOnItemLongClickListener((parent, view, position, id) -> {
-                //TODO add pop up menu on long press for todo
-                return false;
+            listView.setItemsCanFocus(true);
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Toast.makeText(MainActivity.this, "Long press", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
             });
+
+            findViewById(R.id.btn_add).setOnClickListener(
+                    (view) -> startActivity(new Intent(this, AddActivity.class)));
         }
-        listView.setAdapter(listAdapter);
-        findViewById(R.id.btn_add).setOnClickListener(
-                (view) -> startActivity(new Intent(this, AddActivity.class)));
     }
 
     @Override
@@ -96,12 +105,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.about:
                 Toast.makeText(this, "HMP SOFT INC, 2022 (C)", Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.help:
+                Toast.makeText(MainActivity.this, "Under Implementation", Toast.LENGTH_LONG).show();
             default:
                 return false;
         }
-    }
-
-    public void loadData() {
-//    SharedPreferences sharedPreferences = getApplicationContext().deleteSharedPreferences()
     }
 }

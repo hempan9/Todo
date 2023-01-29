@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,11 +36,13 @@ public class UpdateActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: todo: {}" + todo + " index: " + index);
         // find text view by id for name
         name = findViewById(R.id.txt_name_update);
+        name.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+
         // set textview field from existing entity
         name.setText(todo.getName());
         desc = findViewById(R.id.txt_desc_update);
+        desc.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         desc.setText(todo.getDesc());
-
         findViewById(R.id.update_button).setOnClickListener(
                 v -> {
                     if (containsChange(todo)) {
@@ -66,7 +69,7 @@ public class UpdateActivity extends AppCompatActivity {
                 Util.createDb(this).todoDao().deleteTodo(todo);
                 Log.d(TAG, "onCreate: Todo deleted successfully");
                 startActivity(new Intent(this, MainActivity.class));
-                Toast.makeText(this, "Todo successfully deleted made", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Todo successfully deleted", Toast.LENGTH_SHORT).show();
             }
 
         });

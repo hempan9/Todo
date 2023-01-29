@@ -29,6 +29,7 @@
 
     <com.google.android.material.slider.Slider
         android:id="@+id/txtSizeSlider"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/nihtModeSwitch"

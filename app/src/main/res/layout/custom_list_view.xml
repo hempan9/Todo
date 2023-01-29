@@ -1,43 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="100">
+    android:layout_height="wrap_content"
+    android:weightSum="100"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/text1"
+        android:id="@+id/todo_name"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_weight="66.6"
+        android:layout_height="30dp"
+        android:layout_weight="5.6"
+        android:height="20dp"
+        android:fontFamily="sans-serif"
         android:gravity="left"
-        android:text="TextViewl"
-        android:textColor="@color/purple_500"
-        android:background="@android:color/holo_green_dark"
+        android:text="todo_name"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/todo_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="33.35"
-        android:orientation="vertical"
-        android:background="@color/material_dynamic_secondary90"
-        android:backgroundTint="@android:color/holo_blue_light"
-        >
+        android:layout_below="@+id/todo_name"
+        android:layout_gravity="left"
+        android:layout_weight="5.6"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:text="todo_desc"
+        android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="TextView2" />
-
-        <TextView
-            android:id="@+id/text3"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/text2"
-            android:gravity="right"
-            android:textSize="10dp"
-            android:text="TextView3" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/todo_created_date"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/todo_desc"
+        android:gravity="right"
+        android:text="todo_created_date"
+        android:textSize="10dp" />
 </LinearLayout>
